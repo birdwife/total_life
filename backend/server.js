@@ -25,7 +25,6 @@ app.post('/makeappt', async (req, res) => {
     try {
         const appt_in_db = await pool.query('INSERT INTO appts (name, time, status) VALUES ($1, $2, $3)', [name, date, status])
         console.log("Success!")
-        console.log({name, date, status})
     } catch (err) {
         console.log(err)
     }
