@@ -50,12 +50,13 @@ function MainPage() {
     return (
         <div className="flex justify-center bg-red-100 h-screen">
             <div className="bg-blue-200 h-[fit-content] p-12 rounded-2xl mt-12">
-                <div className="bruno-ace-regular text-3xl p-2">Appointments</div>
-            <div>{data && Array.isArray(data) ? data.map( (item) => 
-                <div className="grid grid-cols-3 p-2">
+                <div className="bruno-ace-regular text-3xl p-4">Appointments</div>
+            <div className="">{data && Array.isArray(data) ? data.map( (item) => 
+                <div className="grid grid-cols-4">
                     <div>{item.name}</div>
                     <div>{item.time}</div>
                     <div>{item.status}</div>
+                    <div className="ml-6 pb-4">x</div>
                 </div> 
             )
             : 
