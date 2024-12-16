@@ -17,14 +17,33 @@ const pool = new Pool({
 const cors = require('cors');
 app.use(cors());
 
-app.get('/', async (req, res) => {
+app.post('/makeappt', async (req, res) => {
+
+    const name = req.name;
+    const date = req.date;
+    const apptstatus = req.apptstatus;
+
     try {
         const result = await pool.query('SELECT * FROM appts;')
         res.send(result.rows)
     } catch (err) {
         res.send(err)
     }
+
 });
+
+app.get('/getappts', async (req, res) => {
+
+    try {
+        const result = await pool.query('SELECT * FROM appts;')
+        res.send(result)
+    } catch (err) {
+        res.send(err)
+    }
+
+})
+
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

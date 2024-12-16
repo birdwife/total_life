@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&family=Playwrite+BE+WAL:wght@100..400&display=swap');
 
 .bruno-ace-regular {
@@ -5,4 +9,3 @@
     font-weight: 900;
     font-style: normal;
   }
-  
