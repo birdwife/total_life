@@ -1,18 +1,30 @@
 import { useEffect, useState } from "react";
 import './styles.css'
-import { M } from "vite/dist/node/types.d-aGj9QkWt";
 
-function Main() {
+function MainPage() {
 
     const [data, setData] = useState([])
     const [name, setName] = useState()
     const [hour, setHour] = useState()
     const [minute, setMinute] = useState()
     const [status, setStatus] = useState()
+    const [pee, setPee] = useState()
 
     async function insertDataFunction() {
+        
+        const date = (hour + ':' + minute).toString()
 
-        console.log("ggg")
+        try {
+            const result = await fetch('http://localhost:3001/makeappt', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({name, date, status})
+                //mode: 'no-cors'
+            })
+
+        } catch (err) {
+            console.log(err)
+        }
 
     }
 
@@ -70,4 +82,4 @@ function Main() {
 
 }
 
-export default Main;
+export default MainPage;

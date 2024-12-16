@@ -19,15 +19,15 @@ app.use(cors());
 
 app.post('/makeappt', async (req, res) => {
 
-    const name = req.name;
-    const date = req.date;
-    const apptstatus = req.apptstatus;
+    const name = req.body.name;
+    const date = req.body.date;
+    const apptstatus = req.body.status;
 
     try {
-        const result = await pool.query('SELECT * FROM appts;')
-        res.send(result.rows)
+        const appt_in_db = await pool.query('INSERT INTO appts (name, time, status) VALUES ($1, $2, $3)', [name, date, apptstatus])
+        console.log("Success!")
     } catch (err) {
-        res.send(err)
+        console.log(err)
     }
 
 });
@@ -36,7 +36,7 @@ app.get('/getappts', async (req, res) => {
 
     try {
         const result = await pool.query('SELECT * FROM appts;')
-        res.send(result)
+        res.send(result.rows)
     } catch (err) {
         res.send(err)
     }
