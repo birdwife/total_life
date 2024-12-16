@@ -16,16 +16,16 @@ const pool = new Pool({
 
 const cors = require('cors');
 app.use(cors());
+app.use(express.json());
 
 app.post('/makeappt', async (req, res) => {
 
-    const name = req.body.name;
-    const date = req.body.date;
-    const apptstatus = req.body.status;
+    const { name, date, status } = req.body;
 
     try {
-        const appt_in_db = await pool.query('INSERT INTO appts (name, time, status) VALUES ($1, $2, $3)', [name, date, apptstatus])
+        const appt_in_db = await pool.query('INSERT INTO appts (name, time, status) VALUES ($1, $2, $3)', [name, date, status])
         console.log("Success!")
+        console.log({name, date, status})
     } catch (err) {
         console.log(err)
     }
